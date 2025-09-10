@@ -1,9 +1,14 @@
+// This class creates a standard structure for successful API responses (while ApiError handled failures).
 class ApiResponse {
-    constructor (statusCode, data , message = "Success"){
-        this.statusCode = statusCode
-        this.data = data 
-        this.message = message 
-        this.success =  statusCode < 400 
+    constructor (
+        statusCode,
+        data,
+        message = "Success")
+        {
+        this.statusCode = statusCode   // HTTP status code (200, 201, etc.)
+        this.data = data   // Actual payload (user info, posts, etc.
+        this.message = message  // Default message if not provided
+        this.success =  statusCode < 400  //true if 400false if error
     }
 
 }
