@@ -59,13 +59,20 @@ const userSchema  = new Schema({
 }
 )
 
+// next is a callback function provided by Mongoose middleware system.
+// It’s just a function parameter that Mongoose injects into your middleware.
+// You could technically name it anything, like: done etc
+
+// .pre is mongoose middleware 
 userSchema.pre("save" , async function(next) {
     // now we need to add logic if it is  password is modified or not 
     // so if password is changed then run the next method 
     if(!this.isModified("password")) return next()
-
     //we need to give context of this password
-    this.password  = bcrypt.hash(this.password , 10)
+    this.password  = await bcrypt.hash(this.password , 10)
+ 
+// Calls the next middleware in the chain.
+// Without this, the save operation would hang forever.
     next() 
 })
 
