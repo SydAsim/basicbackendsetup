@@ -19,9 +19,21 @@ app.use(express.json({limit: '10kb'}))
 app.use(express.urlencoded({extended : true , limit : '20kb'} ))
 
 // now to store public assets or folders etc in images faviicon etc 
-app.use(express.static("Public"))
-
-
+app.use(express.static("public"))
 app.use(cookieParser())
 
-export {app}
+
+
+//routes import 
+import userRouter from './routes/user.routes.js' 
+
+//routes decalaration
+app.use("/api/v1/users" , userRouter)
+// It’s just a variable name you gave to
+// whatever is being exported from ./routes/user.routes.js
+// By convention, developers often name it userRouter when that 
+// file contains routes related to "users" (like register, login, logout, profile, etc).
+
+export default app
+
+

@@ -86,7 +86,7 @@ userSchema.methods.isPasswordCorrect = async function
 
 //now we will right method for  generating access tokens and referesh tokens
 
-userSchema.methods.generateAccessToken( function () 
+userSchema.methods.generateAccessToken = function () 
 {
     jwt.sign(
         {
@@ -102,9 +102,9 @@ userSchema.methods.generateAccessToken( function ()
         }
     )
 }
-)
 
-userSchema.methods.generateRefreshToken( function (){
+
+userSchema.methods.generateRefreshToken = function (){
     jwt.sign(
         {
             _id: this._id,
@@ -114,7 +114,7 @@ userSchema.methods.generateRefreshToken( function (){
             expiresIn : process.env.REFRESH_TOKEN_EXPIRY
         }
     )
-})
+}
 
 
 

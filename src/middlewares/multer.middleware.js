@@ -1,6 +1,5 @@
 import multer from 'multer'
 
-
 // Hey, when someone uploads a file, save it to my disk (server storage), 
 // and here’s how.
 const storage = multer.diskStorage({

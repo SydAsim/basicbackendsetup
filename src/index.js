@@ -1,11 +1,12 @@
 // require('dotenv').config({path : './env'})  //As early as possible in your application, import and configure dotenv
-import dotenv, { config } from 'dotenv'
+import dotenv  from 'dotenv'
 import connectedDb from "./db/index.js";
-
+import app from "./app.js"
 
 dotenv.config({
    path : "./env"
 })
+
 
 
 // asyncrouns code when completed it also give us Promise
