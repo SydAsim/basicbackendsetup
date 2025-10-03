@@ -415,3 +415,27 @@ Sure 🚀
 ⚠️ Important: JWTs aren’t encrypted by default — they’re just **signed**. So don’t put sensitive data (like passwords) inside them.
 
 ---
+
+Exactly 👍
+
+Let’s refine what you’re saying:
+
+* **Access Tokens** →
+
+  * **Short-lived** (usually minutes to an hour).
+  * Used to **authorize access** to specific resources or APIs.
+  * Purpose: Instead of asking the user to enter their username/password on every request, the server issues this token once after login.
+  * Think of it like a **temporary entry pass**.
+
+* **Refresh Tokens** →
+
+  * **Long-lived** (days, weeks, months).
+  * Cannot directly access resources, but used to **get a new access token** when the old one expires.
+  * Purpose: Avoids forcing the user to log in again and again.
+  * Think of it like a **membership card** you keep, which allows you to request new temporary passes (access tokens).
+
+👉 The idea behind this is **security + convenience**:
+
+* **Security**: Access tokens expire quickly, so if they get stolen, the damage is limited.
+* **Convenience**: Refresh tokens mean the user doesn’t have to type their password each time.
+

@@ -33,7 +33,22 @@ app.use("/api/v1/users" , userRouter)
 // whatever is being exported from ./routes/user.routes.js
 // By convention, developers often name it userRouter when that 
 // file contains routes related to "users" (like register, login, logout, profile, etc).
+// This means all routes defined inside user.routes.js will be prefixed with /api/v1/users.
+// Example:
+// /api/v1/users/register
+// /api/v1/users/login
+// /api/v1/users/logout
+// /api/v1/users/profile
 
 export default app
 
 
+// app.js → app setup
+
+// Define middlewares (CORS, cookieParser, body parser, etc.)
+
+// Mount routes (/api/v1/users, etc.)
+
+// Export the configured Express app.
+
+// No DB connection, no .listen() here.

@@ -1,7 +1,8 @@
 import mongoose ,{Schema}from 'mongoose'
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcrypt'
-
+//Mongoose is basically
+//an ODM (Object Data Modeling) library for MongoDB in Node.js.
 const userSchema  = new Schema({
     username : {
         type : String,
@@ -78,34 +79,37 @@ userSchema.pre("save" , async function(next) {
 
 
 // we can inject as many methods in our Schema as we want 
-userSchema.methods.isPasswordCorrect = async function 
-(password) {
-    // bcrypt can use compare mehtod to use the validations of the passwords  
+userSchema.methods.isPasswordCorrect = async function (password) {
+// bcrypt can use compare mehtod to use the validations of the passwords  
     return await bcrypt.compare(password , this.password)
 }
 
 //now we will right method for  generating access tokens and referesh tokens
+// JWT ARE  "stateless" refers to a system, component, or function 
+// that does not retain any information about past interactions or previous states.
 
+// The JWT is generated each login.
+// The secret is constant, stored in .env, used every time to sign and verify.
 userSchema.methods.generateAccessToken = function () 
 {
-    jwt.sign(
+    return jwt.sign(
         {
             _id: this._id,
             email : this.email,
-            username : this.username,
+            username : this.username,    //PAYLOAD
             password : this.password
 
         },
-        process.env.ACCESS_TOKEN_SECRET,
+        process.env.ACCESS_TOKEN_SECRET,   // SECRETS 
         {
-            expiresIn : process.env.ACCESS_TOKEN_EXPIRY
+            expiresIn : process.env.ACCESS_TOKEN_EXPIRY     // OPTIONS
         }
     )
 }
 
 
 userSchema.methods.generateRefreshToken = function (){
-    jwt.sign(
+   return  jwt.sign(
         {
             _id: this._id,
         },
